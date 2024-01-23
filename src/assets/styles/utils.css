@@ -1,0 +1,72 @@
+/* 
+- Font sizes for generic elements
+*/
+.page-title {
+  @apply text-4xl font-extrabold;
+}
+
+.header-title {
+  @apply text-base font-extrabold;
+}
+
+.h2-title {
+  @apply text-xl font-extrabold;
+}
+
+.footnote {
+  @apply text-xs font-extrabold;
+}
+
+/*
+- Link
+*/
+.link {
+  position: relative;
+}
+
+.link::after,
+.link::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0px;
+  height: 8px;
+  transition: all 0.1s ease-in-out;
+  transition-duration: 0.2s;
+  opacity: 0;
+  display: flex;
+  z-index: -1;
+  @apply bg-yellow;
+}
+
+.link::after {
+  right: calc(50%);
+}
+
+.link::before {
+  left: calc(50%);
+}
+
+.link:hover::after,
+.link:hover::before {
+  width: 50%;
+  opacity: 1;
+}
+
+/*
+- ie: Active links
+*/
+.custom-underline {
+  position: relative;
+}
+
+.custom-underline::after {
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+  height: 10px;
+  width: 100%;
+  z-index: -1;
+  @apply bg-yellow;
+}

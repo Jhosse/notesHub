@@ -1,0 +1,32 @@
+.social-icon {
+  position: relative;
+  margin-left: 0.5em;
+}
+
+.social-icon::after,
+.social-icon::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0px;
+  height: 2px;
+  margin-bottom: -3px;
+  transition: all 0.1s ease-in-out;
+  transition-duration: 0.2s;
+  opacity: 0;
+  display: flex;
+  @apply bg-black;
+}
+
+.social-icon::after {
+  right: calc(50%);
+}
+.social-icon::before {
+  left: calc(50%);
+}
+
+.social-icon:hover::after,
+.social-icon:hover::before {
+  width: 50%;
+  opacity: 1;
+}
