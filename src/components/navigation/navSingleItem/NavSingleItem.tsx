@@ -22,7 +22,7 @@ const NavSingleItem = ({
     <Link
       href={url}
       className={`${style[styles]} ${classNames}`}
-      data-navigation-path={url} // ADD ${Paths.Admin} TO THE TEST
+      data-navigation-path={url}
     >
       {name}
     </Link>

@@ -69,7 +69,7 @@ const RecursiveNavBlock = ({
                   </button>
                   <NavSingleItem
                     name={capitalizedKey}
-                    url={`${Paths.Admin}/${tagPath}`}
+                    url={isActive ? undefined : `${Paths.Admin}/${tagPath}`}
                     styles={
                       isActive
                         ? `${device}-nav-single-item-header-active`
@@ -91,7 +91,7 @@ const RecursiveNavBlock = ({
               >
                 <NavSingleItem
                   name={capitalizedKey}
-                  url={`${Paths.Admin}/${tagPath}`}
+                  url={isActive ? undefined : `${Paths.Admin}/${tagPath}`}
                   styles={isActive ? `${device}-nav-single-item-active` : ""}
                   classNames={isActive ? "custom-underline" : "link"}
                 />
