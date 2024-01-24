@@ -1,0 +1,35 @@
+.desktop-nav-block {
+}
+
+.desktop-nav-block .desktop-nav-block {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.desktop-nav-block-expanded + .desktop-nav-block {
+  max-height: 300px;
+}
+
+.desktop-nav-block-expanded .circle-arrow-icon {
+  transform: rotate(90deg);
+}
+
+.desktop-nav-single-item-container {
+  position: relative;
+}
+
+.desktop-nav-single-item-container::before {
+  content: "";
+  position: absolute;
+  width: 0.7em;
+  height: 0.8em;
+  border-left: 2px solid #fde047;
+  border-bottom: 2px solid #fde047;
+  left: -0.8em;
+  border-radius: 0.1em;
+}
+
+.circle-arrow-icon {
+  transition: transform 0.3s;
+}

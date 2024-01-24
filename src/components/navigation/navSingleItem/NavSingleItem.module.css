@@ -1,0 +1,28 @@
+.desktop-nav-single-item-header-active,
+.desktop-nav-single-item-active {
+  @apply font-semibold;
+}
+
+.desktop-nav-single-item-header,
+.desktop-nav-single-item-header-active {
+  margin-bottom: -2px;
+}
+
+.desktop-nav-single-item-header-active::after,
+.desktop-nav-single-item-header-active::before,
+.desktop-nav-single-item-active::after,
+.desktop-nav-single-item-active::before {
+  height: 8px;
+}
+
+.desktop-nav-single-item-header-active::after,
+.desktop-nav-single-item-header-active::before,
+.desktop-nav-single-item-header::after,
+.desktop-nav-single-item-header::before {
+  bottom: 3px;
+}
+
+.desktop-nav-single-item-active::after,
+.desktop-nav-single-item-active::before {
+  bottom: 0;
+}

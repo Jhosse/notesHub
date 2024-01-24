@@ -1,22 +1,28 @@
 import React from "react";
-import DesktopTagsNav from "../desktopNav/DesktopTagsNav";
+import DesktopNav from "../desktopNav/DesktopNav";
 import MobileNav from "../mobileNav/MobileNav";
+import TagsNavProvider from "../context/TagsNavProvider";
 import { NestedObject } from "../../../@types/custom/utils";
 import { prepareTagsForNav } from "../utils";
+import { useScreenSize } from "../../../hooks";
 
-interface ITagsNavProps {
+interface ITagsNav {
   tags: string[];
-  isDesktop: boolean;
 }
 
-const TagsNav = ({ tags, isDesktop }: ITagsNavProps) => {
+const TagsNav = ({ tags }: ITagsNav) => {
+  const { isDesktop } = useScreenSize();
   const tagsReadyForNav: NestedObject = prepareTagsForNav(tags);
 
-  if (isDesktop) {
-    return <DesktopTagsNav tagsObj={tagsReadyForNav} />;
-  } else {
-    return <MobileNav tagsObj={tagsReadyForNav} />;
-  }
+  return (
+    <TagsNavProvider>
+      {isDesktop ? (
+        <DesktopNav tags={tagsReadyForNav} />
+      ) : (
+        <MobileNav tags={tagsReadyForNav} />
+      )}
+    </TagsNavProvider>
+  );
 };
 
 export default TagsNav;

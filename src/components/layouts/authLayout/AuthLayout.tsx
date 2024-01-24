@@ -37,7 +37,7 @@ const AuthLayout: AuthLayoutProps = ({ children, props }) => {
         >
           {tags && (
             <aside role="complementary">
-              <TagsNav tags={tags} isDesktop={isDesktop} />
+              <TagsNav tags={tags} />
             </aside>
           )}
           {children}

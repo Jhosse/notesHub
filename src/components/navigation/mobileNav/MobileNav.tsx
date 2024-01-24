@@ -5,10 +5,10 @@ import { NestedObject } from "../../../@types/custom/utils";
 import Paths from "../../../utils/paths";
 
 interface IMobileNavProps {
-  tagsObj: NestedObject;
+  tags: NestedObject;
 }
 
-const MobileNav = ({ tagsObj }: IMobileNavProps) => {
+const MobileNav = ({ tags }: IMobileNavProps) => {
   const router = useRouter();
   const { asPath } = router;
   const isHomePage = asPath === Paths.Admin;
