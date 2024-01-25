@@ -5,3 +5,8 @@ export interface IUrlMetadata {
   ogTitle: string | null;
   ogDescription: string | null;
 }
+
+export enum Device {
+  Desktop = "desktop",
+  Mobile = "mobile",
+}

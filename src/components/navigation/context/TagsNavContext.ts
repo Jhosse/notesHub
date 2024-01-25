@@ -1,7 +1,8 @@
 import { createContext, useContext } from "react";
+import { Device } from "../../../@types/custom/utils";
 
 interface ITagsNavContext {
-  toggleTag: (id: string, className: string) => void;
+  toggleTag: (id: string, className: string, device: Device) => void;
   collectRef: (id: string, ref: HTMLDivElement | null) => void;
 }
 

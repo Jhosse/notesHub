@@ -1,16 +1,14 @@
 import React from "react";
-import { NestedObject } from "../../../@types/custom/utils";
+import { NestedObject, Device } from "../../../@types/custom/utils";
 import { useTagsNavContext } from "../context/TagsNavContext";
+import { useScreenSize } from "../../../hooks";
 import Paths from "../../../utils/paths";
 import { stringCapitalization } from "../../../utils/functions";
-import NavSingleItem from "../navSingleItem/NavSingleItem";
-import { CircleArrowIcon } from "../../icons";
+import NavSingleItem, {
+  getSingleItemClass,
+} from "../navSingleItem/NavSingleItem";
+import { CircleArrowIcon, ChevronIcon } from "../../icons";
 import styles from "./RecursiveNavBlock.module.css";
-
-export enum Device {
-  Desktop = "desktop",
-  Mobile = "mobile",
-}
 
 interface IRecursiveNavBlock {
   tags: NestedObject;
@@ -28,6 +26,7 @@ const RecursiveNavBlock = ({
   parentTag = "",
 }: IRecursiveNavBlock) => {
   const { toggleTag, collectRef } = useTagsNavContext();
+  const { isDesktop } = useScreenSize();
 
   const ariaNavigationProps = {
     "aria-orientation": "vertical" as "vertical",
@@ -37,7 +36,9 @@ const RecursiveNavBlock = ({
 
   return (
     <ul
-      className={`${styles[`${device}-nav-block`]} ${!isParent && "pl-5"}`} //${styles["tags-ul"]}
+      className={`${styles[`${device}-nav-block`]} ${
+        !isParent && isDesktop ? "pl-5" : ""
+      }`}
       {...(isParent ? ariaNavigationProps : {})}
     >
       {Object.keys(tags).map((key, index) => {
@@ -52,30 +53,47 @@ const RecursiveNavBlock = ({
               <>
                 <div
                   id={tagPath}
-                  className={`${styles[`${device}-nav-block-expanded`]} flex`}
+                  className={`${
+                    isDesktop
+                      ? styles["desktop-nav-block-expanded"]
+                      : "bg-yellow-200  justify-center"
+                  } flex`}
                   ref={(ref) => collectRef(tagPath, ref)}
                 >
                   <button
                     onClick={() =>
-                      toggleTag(tagPath, styles[`${device}-nav-block-expanded`])
+                      toggleTag(
+                        tagPath,
+                        styles[`${device}-nav-block-expanded`],
+                        device
+                      )
                     }
-                    className="mr-1"
+                    className={styles[`${device}-nav-block-button`]}
                   >
-                    <CircleArrowIcon
-                      size={16}
-                      color="#9ca3af"
-                      className={styles["circle-arrow-icon"]}
-                    />
+                    {isDesktop ? (
+                      <CircleArrowIcon
+                        size={16}
+                        color="#9ca3af"
+                        className={styles["circle-arrow-icon"]}
+                      />
+                    ) : (
+                      <ChevronIcon
+                        size={24}
+                        className={styles["chevron-arrow-icon"]}
+                      />
+                    )}
                   </button>
                   <NavSingleItem
                     name={capitalizedKey}
                     url={isActive ? undefined : `${Paths.Admin}/${tagPath}`}
-                    styles={
+                    cssStyles={
                       isActive
                         ? `${device}-nav-single-item-header-active`
                         : `${device}-nav-single-item-header`
                     }
-                    classNames={isActive ? "custom-underline" : "link"}
+                    classNames={`${getSingleItemClass(isActive, device)} ${
+                      !isDesktop ? "pr-8" : ""
+                    }`}
                   />
                 </div>
                 <RecursiveNavBlock
@@ -92,8 +110,8 @@ const RecursiveNavBlock = ({
                 <NavSingleItem
                   name={capitalizedKey}
                   url={isActive ? undefined : `${Paths.Admin}/${tagPath}`}
-                  styles={isActive ? `${device}-nav-single-item-active` : ""}
-                  classNames={isActive ? "custom-underline" : "link"}
+                  cssStyles={isActive ? `${device}-nav-single-item-active` : ""}
+                  classNames={getSingleItemClass(isActive, device)}
                 />
               </div>
             )}

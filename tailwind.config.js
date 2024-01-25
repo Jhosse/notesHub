@@ -12,6 +12,7 @@ module.exports = {
     },
     colors: {
       yellow: {
+        200: "#FDE68A",
         400: "#FACC15",
         DEFAULT: "#FDE047", // #fbf36d
       },
@@ -24,6 +25,7 @@ module.exports = {
         DEFAULT: "#000",
       },
       gray: {
+        100: "#f3f4f6",
         200: "#e5e7eb",
         400: "#9ca3af",
         DEFAULT: "#111827",

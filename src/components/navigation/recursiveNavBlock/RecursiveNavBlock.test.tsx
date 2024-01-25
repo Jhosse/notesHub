@@ -1,8 +1,8 @@
 import React from "react";
-import { render, fireEvent, getAllByTestId } from "@testing-library/react";
-import RecursiveNavBlock, { Device } from "./RecursiveNavBlock";
+import { render, fireEvent } from "@testing-library/react";
+import RecursiveNavBlock from "./RecursiveNavBlock";
 import { USEROUTER_MOCKIMPLEMENTATION } from "../../../mocks";
-import { NestedObject } from "../../../@types/custom/utils";
+import { NestedObject, Device } from "../../../@types/custom/utils";
 import TagsNavProvider from "../context/TagsNavProvider";
 import Paths from "../../../utils/paths";
 
@@ -88,11 +88,11 @@ describe("RecursiveNavBlock", () => {
     );
 
     expect(getByText("Css").className).toBe(
-      `${Device.Desktop}-nav-single-item-header link`
+      `${Device.Desktop}-nav-single-item-header link `
     );
   });
 
-  it("renders as a span when path match (active)", () => {
+  it("renders as a div when path match (active)", () => {
     const { getByText } = render(
       <TagsNavProvider>
         <RecursiveNavBlock
@@ -103,8 +103,8 @@ describe("RecursiveNavBlock", () => {
       </TagsNavProvider>
     );
 
-    expect(getByText("Css").className).toBe(
-      `${Device.Desktop}-nav-single-item-header-active custom-underline`
+    expect(getByText("Css").parentElement?.className).toBe(
+      `${Device.Desktop}-nav-single-item-header-active custom-underline `
     );
   });
 

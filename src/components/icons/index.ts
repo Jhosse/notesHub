@@ -1,4 +1,5 @@
 import ArrowIcon from "./arrowIcon/ArrowIcon";
+import ChevronIcon from "./chevronIcon/ChevronIcon";
 import CircleArrowIcon from "./circleArrowIcon/CircleArrowIcon";
 import CopyIcon from "./copyIcon/CopyIcon";
 import CrossIcon from "./crossIcon/CrossIcon";
@@ -8,6 +9,7 @@ import SocialIcon from "./socialIcon/SocialIcon";
 
 export {
   ArrowIcon,
+  ChevronIcon,
   CircleArrowIcon,
   CopyIcon,
   CrossIcon,

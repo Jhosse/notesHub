@@ -1,0 +1,9 @@
+.desktop-nav {
+  border-right: 1px dashed #fde047;
+  min-height: 89vh;
+  @apply h-full;
+}
+
+.mobile-nav {
+  @apply mb-12 w-full bg-gray-100 rounded border-solid border border-yellow-200;
+}

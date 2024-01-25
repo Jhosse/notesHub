@@ -1,22 +1,16 @@
-import React, {
-  ReactNode,
-  useMemo,
-  useCallback,
-  useRef,
-  useState,
-} from "react";
+import React, { ReactNode, useMemo, useCallback, useRef } from "react";
 import TagsNavContext from "./TagsNavContext";
+import { Device } from "../../../@types/custom/utils";
 
 interface ITagsNavProvider {
   children: ReactNode;
 }
 
 const TagsNavProvider = ({ children }: ITagsNavProvider) => {
-  const [setIsExpandedExpanded] = useState<boolean>(false);
   const tagRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   const toggleTag = useCallback(
-    (id: string, className: string) => {
+    (id: string, className: string, device: Device) => {
       const currentTagRef = tagRefs.current[id];
       if (currentTagRef) {
         // TODO:: Setting heights dynamically has a bug when collapsing
@@ -34,9 +28,15 @@ const TagsNavProvider = ({ children }: ITagsNavProvider) => {
         // }
         //
         //
-        // Add toggle class
-        // currentTagRef.classList.toggle("styles[TOGGLE_CLASS]"); // TODO: ADD THE RIGHT CLASS
-        // const TOGGLE_CLASS = "tags-ul-expanded";
+        // Remove all the other toggle classes for mobile
+        if (device == Device.Mobile) {
+          Object.values(tagRefs.current).forEach((item) => {
+            if (item !== currentTagRef) {
+              item?.classList.remove(className);
+            }
+          });
+        }
+        // Toggle class
         currentTagRef.classList.toggle(className);
       }
     },
