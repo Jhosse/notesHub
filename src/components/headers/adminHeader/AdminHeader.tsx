@@ -6,8 +6,8 @@ import Paths from "../../../utils/paths";
 const AdminHeader = () => {
   return (
     <header role="banner" className="shadow-sm">
-      <div className="max-w-4xl my-0 mx-auto p-4 flex items-center justify-between">
-        <h1 className="header-title">Admin area</h1>
+      <div className="max-w-4xl my-0 mx-auto px-4 py-2 flex items-center justify-between">
+        <h1 className="header-title">Admin area: </h1>
         <Button
           variation={ButtonVariation.Secondary}
           cb={() => signOut({ callbackUrl: Paths.Home })}

@@ -1,37 +1,37 @@
-import { GetStaticProps } from "next";
 import Head from "next/head";
-import { getSocialEntries } from "../services/content-service";
-import MainLayout from "../components/layouts/mainLayout/MainLayout";
-import { ISocialIconEntryFields } from "../@types/generated/contentful";
+import { useRouter } from "next/router";
+import Button, { ButtonVariation } from "../components/button/Button";
+import Paths from "../utils/paths";
 
-interface IHomeProps {
-  socialIcons: ISocialIconEntryFields[];
-}
+const Home = () => {
+  const router = useRouter();
 
-const Home = ({ socialIcons }: IHomeProps) => {
   return (
     <>
       <Head>
-        <title>Jose Terrones Portfolio</title>
-        <meta name="description" content="This is Jose Terrones' Portfolio" />
+        <title>NotesHub App</title>
+        <meta name="description" content="This is a notes hub app" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <MainLayout socialIcons={socialIcons}>
-        <main role="main"></main>
-      </MainLayout>
+
+      <main
+        role="main"
+        className="w-full h-screen flex justify-center items-center"
+      >
+        <section className="text-center">
+          <h1 className="page-title custom-underline">NotesHub</h1>
+          <Button
+            className="mt-10"
+            variation={ButtonVariation.Secondary}
+            cb={() => router.push(Paths.Admin)}
+          >
+            Sign in
+          </Button>
+        </section>
+      </main>
     </>
   );
 };
 
 export default Home;
-
-export const getStaticProps = (async () => {
-  const socialIcons = await getSocialEntries();
-
-  return {
-    props: {
-      socialIcons,
-    },
-  };
-}) satisfies GetStaticProps<IHomeProps>;

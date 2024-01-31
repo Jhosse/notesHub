@@ -34,6 +34,8 @@ const TagsNav = ({ tags }: ITagsNav) => {
   return (
     <TagsNavProvider>
       <nav
+        role="navigation"
+        aria-label="Notes Sidebar"
         className={`${styles[`${device}-nav`]} ${isDesktop ? "pr-4 mr-4" : ""}`}
       >
         <ul className={`${!isDesktop ? "w-full text-center" : ""}`}>
